@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script>
+            async function add() {
+                const a = document.getElementById("first").value
+                const b = document.getElementById("second").value
+
+                const res = await fetch("http://localhost:3000/sum/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    // convert body json into a string
+                    body: JSON.stringify({
+                        a: a,
+                        b: b
+                    })
+                });
+                const json = await res.json();
+                document.getElementById("response").innerHTML = json.ans;
+            }
+        </script>
+    </head>
+
+    <body>
+        <input type="text" placeholder="first number"" id="first">
+        <input type="text" placeholder="second number"  id="second">
+
+        <button onclick="add()">Add</button>
+        <button>Sub</button>
+        <button>Mul</button>
+        <button>Div </button>
+
+        <div id="response"></div>
+    </body>
+</html>
