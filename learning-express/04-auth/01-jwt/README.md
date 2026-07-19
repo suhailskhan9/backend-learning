@@ -155,8 +155,25 @@ The signature:
 ---
 
 # Why JWT?
-
 - Eliminates the need for server-side session storage.
 - Fits well with REST APIs.
 - Scales well because the server does not maintain authentication state.
 - Allows the server to identify and authenticate users by verifying the JWT instead of looking up session state.
+
+# Where Does the JWT Go?
+
+The client sends the JWT in the HTTP `Authorization` header.
+
+```http
+Authorization: Bearer <JWT>
+
+Example:
+```http
+GET /projects
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...
+```
+
+- `Bearer` is an authentication scheme.
+- It tells the server that the client is presenting the following token as proof of identity.
+- It is **not** part of the JWT itself.
